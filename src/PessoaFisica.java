@@ -2,8 +2,8 @@ public class PessoaFisica extends Pessoa {
     private String cpf, profissao;
     private double renda;
 
-    public PessoaFisica(String nome, String endereco, String cpf, String profissao, double renda) {
-        super(nome, endereco);
+    public PessoaFisica(int id, String nome, String endereco, String cpf, String profissao, double renda) {
+        super(id, nome, endereco);
         this.cpf = cpf;
         this.profissao = profissao;
         this.renda = renda;

@@ -1,9 +1,19 @@
 public class Pessoa {
     private String nome, endereco;
+    private int id;
 
-    public Pessoa(String nome, String endereco) {
+    public Pessoa(int id, String nome, String endereco) {
+        this.id = id;
         this.nome = nome;
         this.endereco = endereco;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -24,7 +34,8 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Nome: "       + nome      +
-                "\nEndereço: "  + endereco;
+        return "\nID: " + id +
+                "\nNome: " + nome +
+                "\nEndereço: " + endereco;
     }
 }
