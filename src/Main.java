@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
+    static ArrayList<ContaBancaria> contas = new ArrayList<>();
     static int opcao = 0;
 
     public static void main(String[] args) {
@@ -43,26 +44,23 @@ public class Main {
         for()
     }
 
-    private static Pessoa coletarDados() {
-        System.out.print("\nID\n> ");
-        int id = sc.nextInt();
+    private static ContaBancaria coletarDados() {
+        System.out.print("\n\n> ");
+        int agencia = sc.nextInt();
 
         System.out.print("\nNome\n> ");
-        String nome = sc.next();
+        int numero = sc.nextInt();
 
         System.out.print("\nEndereço\n> ");
-        String endereco = sc.next();
+        int senha = sc.nextInt();
 
-        return new Pessoa(id, nome, endereco);
+        return new ContaBancaria(agencia, numero, senha, idPessoa, saldo);
     }
 
     private static void cadastrarConta() {
-        System.out.print("\nQual o tipo de pessoa?" +
-                "\n1 - Física" +
-                "\n2 - Jurídica" +
-                "\n> ");
 
-        
+        }
+
     }
 
     private static void excluirConta() {
