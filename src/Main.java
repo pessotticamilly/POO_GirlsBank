@@ -3,31 +3,34 @@ import java.util.*;
 public class Main {
     static Scanner sc = new Scanner(System.in);
     static ArrayList<ContaBancaria> contas = new ArrayList<>();
-    static ArrayList<PessoaFisica> PessoasFisicas = new ArrayList<>();
+    static ArrayList<Pessoa> pessoas = new ArrayList<>();
     static int opcao = 0;
 
     public static void main(String[] args) {
-        PessoasFisicas.add(new PessoaFisica(1, "Camilly", "Rua João Bosco, 123", "123.456.789-10", "Estudante", 0));
-        PessoasFisicas.add(new PessoaFisica(2, "Taiany", "Rua Bosco João, 321", "109.876.543-21", "Estudante", 0));
+        pessoas.add(new PessoaFisica(1, "Camilly", "Rua João Bosco, 123", "123.456.789-10", "Estudante", 0));
+        pessoas.add(new PessoaFisica(2, "Taiany", "Rua Bosco João, 321", "109.876.543-21", "Estudante", 0));
         contas.add(new ContaBancaria(1, 1, 1234, 1, 100.0));
         menuInicial();
     }
 
     private static void menuInicial() {
-        System.out.print("""
-                ---- MENU INICIAL ----
-                1 - Login
-                2 - Cadastrar conta
-                3 - Excluir conta
-                4 - Encerrar sessão
-                >\s""");
+        System.out.print("---- MENU INICIAL ----" +
+                "\n1 - Login" +
+                "\n2 - Cadastrar conta" +
+                "\n3 - Excluir conta" +
+                "\n4 - Cadastrar pessoa" +
+                "\n5 - Excluir pessoa" +
+                "\n6 - Encerrar sessão" +
+                "\n> ");
         opcao = sc.nextInt();
 
         switch (opcao) {
             case 1 -> login();
             case 2 -> cadastrarConta();
             case 3 -> excluirConta();
-            case 4 -> {
+            case 4 -> cadastrarPessoa();
+            case 5 -> excluirPessoa();
+            case 6 -> {
                 System.out.print("\nEncerrando...\n");
                 System.exit(0);
             }
@@ -46,9 +49,10 @@ public class Main {
         int senha = sc.nextInt();
 
         for (ContaBancaria conta : contas) {
-            if(conta.getNumero() == numeroConta){
-                if(conta.getSenha() == senha) {
-                    menuConta();
+            if (conta.getNumero() == numeroConta) {
+                if (conta.getSenha() == senha) {
+                    ContaBancaria contaUsuario = conta;
+                    menuConta(contaUsuario);
                 } else {
                     System.out.print("\nSenha inválida! Tente novamente: ");
                     login();
@@ -67,8 +71,8 @@ public class Main {
         System.out.print("\nNúmero\n> ");
         int numero = sc.nextInt();
 
-        for(ContaBancaria conta : contas) {
-            if(conta.getNumero() == numero) {
+        for (ContaBancaria conta : contas) {
+            if (conta.getNumero() == numero) {
                 System.out.print("\nNúmero já cadastrado! Tente novamente:");
                 cadastrarConta();
             }
@@ -77,27 +81,27 @@ public class Main {
         System.out.print("\nSenha\n> ");
         int senha = sc.nextInt();
 
-        System.out.print("\nID Proprietário\n> ");
-        int idProprietario = sc.nextInt();
+        System.out.print("\nID do proprietário\n> ");
+        int idPessoa = sc.nextInt();
 
         boolean verificaPessoa = false;
 
-        for(PessoaFisica pessoaFisica : PessoasFisicas) {
-            if(pessoaFisica.getId() == idProprietario){
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa.getId() == idPessoa) {
                 verificaPessoa = true;
                 break;
             }
         }
-        
-        if(!verificaPessoa) {
-            System.out.print("\nID Proprietário inválido! Tente novamente:");
+
+        if (!verificaPessoa) {
+            System.out.print("\nID do proprietário inválido! Tente novamente:");
             cadastrarConta();
         }
 
         System.out.print("\nSaldo\n> ");
         double saldo = sc.nextDouble();
 
-        contas.add(new ContaBancaria(agencia, numero, senha, idProprietario, saldo));
+        contas.add(new ContaBancaria(agencia, numero, senha, idPessoa, saldo));
         System.out.print("\nConta cadastrada com sucesso!\n\n");
         menuInicial();
     }
@@ -106,8 +110,8 @@ public class Main {
         System.out.print("\nQual o número da conta que desejas excluir?\n> ");
         int numero = sc.nextInt();
 
-        for(ContaBancaria conta : contas){
-            if(conta.getNumero() == numero){
+        for (ContaBancaria conta : contas) {
+            if (conta.getNumero() == numero) {
                 contas.remove(conta);
                 System.out.print("\nConta excluída com sucesso!\n\n");
                 menuInicial();
@@ -118,7 +122,15 @@ public class Main {
         }
     }
 
-    private static void menuConta() {
+    private static void cadastrarPessoa() {
+
+    }
+
+    private static void excluirPessoa() {
+
+    }
+
+    private static void menuConta(ContaBancaria contaUsuario) {
         System.out.print("\nBem-vindo novamente!\n" +
                 "\n---- MENU CONTA ----" +
                 "\n1 - Sacar" +
@@ -130,18 +142,30 @@ public class Main {
         opcao = sc.nextInt();
 
         switch (opcao) {
-            case 1 -> ContaBancaria.sacar();
-            case 2 -> ContaBancaria.depositar();
-            case 3 -> ContaBancaria.transferir();
-            case 4 -> ContaBancaria.verDados();
+            case 1 -> sacar(contaUsuario);
+            case 2 -> depositar(contaUsuario);
+            case 3 -> transferir(contaUsuario);
+            case 4 -> contaUsuario.toString();
             case 5 -> {
-                System.out.print("\n");
+                System.out.print("\nSaindo...\n");
                 menuInicial();
             }
             default -> {
                 System.out.print("\nOpção inválida! Tente novamente:\n");
-                menuConta();
+                menuConta(contaUsuario);
             }
         }
+    }
+
+    private static void sacar(ContaBancaria contaUsuario) {
+
+    }
+
+    private static void depositar(ContaBancaria contaUsuario) {
+
+    }
+
+    private static void transferir(ContaBancaria contaUsuario) {
+
     }
 }

@@ -22,10 +22,6 @@ public class ContaBancaria {
 
     }
 
-    public static void verDados() {
-
-    }
-
     public int getAgencia() {
         return agencia;
     }
@@ -68,9 +64,10 @@ public class ContaBancaria {
 
     @Override
     public String toString() {
-        return "\nID Proprietário: " + idPessoa +
+        return "\nID do proprietário: " + idPessoa +
                 "\nAgência: " + agencia +
                 "\nNúmero: " + numero +
-                "\nSaldo: " + saldo;
+                "\nSaldo: " + saldo +
+                "\n- - - - - - - - - - - - - - - - - - - -\n\n";
     }
 }
