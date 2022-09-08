@@ -10,48 +10,31 @@ public class ContaBancaria {
         this.saldo = saldo;
     }
 
-    public static void sacar() {
-
+    public String sacar(double valor) {
+        if (this.getSaldo() >= valor) {
+            this.setSaldo(this.getSaldo() - valor);
+            return "\nValor sacado com sucesso!";
+        } else {
+            return "\nSaldo insuficiente!";
+        }
     }
 
-    public static void depositar() {
-
+    public String depositar(double valor) {
+        this.setSaldo(this.getSaldo() + valor);
+        return "\nValor depositado com sucesso!\n";
     }
 
-    public static void transferir() {
-
-    }
-
-    public int getAgencia() {
-        return agencia;
-    }
-
-    public void setAgencia(int agencia) {
-        this.agencia = agencia;
+    public void transferir(ContaBancaria conta, double valor) {
+        this.sacar(valor);
+        conta.depositar(valor);
     }
 
     public int getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
     public int getSenha() {
         return senha;
-    }
-
-    public void setSenha(int senha) {
-        this.senha = senha;
-    }
-
-    public int getIdPessoa() {
-        return idPessoa;
-    }
-
-    public void setIdPessoa(int idPessoa) {
-        this.idPessoa = idPessoa;
     }
 
     public double getSaldo() {
@@ -67,7 +50,6 @@ public class ContaBancaria {
         return "\nID do proprietário: " + idPessoa +
                 "\nAgência: " + agencia +
                 "\nNúmero: " + numero +
-                "\nSaldo: " + saldo +
-                "\n- - - - - - - - - - - - - - - - - - - -\n\n";
+                "\nSaldo: " + saldo;
     }
 }

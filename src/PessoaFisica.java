@@ -9,30 +9,6 @@ public class PessoaFisica extends Pessoa {
         this.renda = renda;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getProfissao() {
-        return profissao;
-    }
-
-    public void setProfissao(String profissao) {
-        this.profissao = profissao;
-    }
-
-    public double getRenda() {
-        return renda;
-    }
-
-    public void setRenda(double renda) {
-        this.renda = renda;
-    }
-
     @Override
     public String toString() {
         return super.toString() +
