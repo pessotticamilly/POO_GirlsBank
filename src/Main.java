@@ -282,6 +282,10 @@ public class Main {
         }
     }
 
+    private static void receber(ContaBancaria contaUsuario) {
+
+    }
+
     private static void sacar(ContaBancaria contaUsuario) {
         System.out.print("\nQual o valor que gostarias de sacar?\n> R$ ");
         double valor = sc.nextDouble();
