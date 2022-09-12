@@ -9,6 +9,10 @@ public class PessoaFisica extends Pessoa {
         this.renda = renda;
     }
 
+    public double getRenda() {
+        return renda;
+    }
+
     @Override
     public String toString() {
         return super.toString() +

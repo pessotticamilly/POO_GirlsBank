@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -6,7 +7,7 @@ public class Main {
     static ArrayList<Pessoa> pessoas = new ArrayList<>();
 
     public static void main(String[] args) {
-        pessoas.add(new PessoaFisica(1, "Camilly", "Rua João Bosco, 123", "123.456.789-10", "Estudante", 0));
+        pessoas.add(new PessoaFisica(1, "Camilly", "Rua João Bosco, 123", "123.456.789-10", "Estudante", 1212));
         pessoas.add(new PessoaFisica(2, "Taiany", "Rua Bosco João, 321", "109.876.543-21", "Estudante", 0));
         contas.add(new ContaBancaria(1, 1, 1234, 1, 100.0));
         contas.add(new ContaBancaria(1, 2, 4321, 2, 200.0));
@@ -165,7 +166,7 @@ public class Main {
 
     private static void cadastrarPessoa() {
         System.out.print("\nQual o tipo de pessoa?" +
-                "]\n1 - Pessoa física" +
+                "\n1 - Pessoa física" +
                 "\n2 - Pessoa Jurídica" +
                 "\n> ");
         int tipoPessoa = sc.nextInt();
@@ -240,6 +241,8 @@ public class Main {
     }
 
     private static void menuConta(ContaBancaria contaUsuario) {
+        receber(contaUsuario);
+
         System.out.print("\n---- MENU CONTA ----" +
                 "\n1 - Sacar" +
                 "\n2 - Depositar" +
@@ -283,7 +286,25 @@ public class Main {
     }
 
     private static void receber(ContaBancaria contaUsuario) {
-        contaUsuario.getIdPesossssjgjjdj==6565
+        SimpleDateFormat formatter = new SimpleDateFormat("dd");
+        Date date = new Date();
+        if (formatter.format(date).equals("5")) {
+            int idPessoa = contaUsuario.getIdPessoa();
+            PessoaFisica usuario = null;
+            boolean validaPessoa = false;
+
+            for (Pessoa pessoa : pessoas) {
+                if (pessoa.getId() == idPessoa && pessoa instanceof PessoaFisica) {
+                    usuario = (PessoaFisica) pessoa;
+                    validaPessoa = true;
+                    break;
+                }
+            }
+
+            if (validaPessoa) {
+                contaUsuario.receber(usuario);
+            }
+        }
     }
 
     private static void sacar(ContaBancaria contaUsuario) {
@@ -304,17 +325,26 @@ public class Main {
         System.out.print("\nQual o número da conta que gostarias de transferir?\n> ");
         int numero = sc.nextInt();
 
+        ContaBancaria contaTransferencia = null;
+        boolean validaConta = false;
+
         for (ContaBancaria conta : contas) {
             if (conta.getNumero() == numero) {
-                System.out.print("\nQual o valor que gostarias de transferir?\n> R$ ");
-                double valor = sc.nextDouble();
-
-                contaUsuario.transferir(conta, valor);
-            } else {
-                System.out.print("\nNúmero da conta inválido! Encerrando operação...\n");
-                menuConta(contaUsuario);
+                contaTransferencia = conta;
+                validaConta= true;
+                break;
             }
-            break;
+        }
+
+        if(validaConta){
+            System.out.print("\nQual o valor que gostarias de transferir?\n> R$ ");
+            double valor = sc.nextDouble();
+
+            contaUsuario.transferir(contaTransferencia, valor);
+            System.out.print("\nValor transferido com sucesso!\n");
+        } else {
+            System.out.print("\nNúmero da conta inválido! Encerrando operação...\n");
+            menuConta(contaUsuario);
         }
     }
 }

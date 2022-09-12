@@ -13,9 +13,9 @@ public class ContaBancaria {
     public String sacar(double valor) {
         if (this.getSaldo() >= valor) {
             this.setSaldo(this.getSaldo() - valor);
-            return "\nValor sacado com sucesso!";
+            return "\nValor sacado com sucesso!\n";
         } else {
-            return "\nSaldo insuficiente!";
+            return "\nSaldo insuficiente!\n";
         }
     }
 
@@ -29,8 +29,8 @@ public class ContaBancaria {
         conta.depositar(valor);
     }
 
-    public void receber() {
-        this.setSaldo(this.getSaldo() + this.getRenda());
+    public void receber(PessoaFisica pessoa) {
+        this.setSaldo(this.getSaldo() + pessoa.getRenda());
     }
 
     public int getNumero() {
