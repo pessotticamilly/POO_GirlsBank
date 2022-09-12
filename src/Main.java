@@ -283,7 +283,7 @@ public class Main {
     }
 
     private static void receber(ContaBancaria contaUsuario) {
-
+        contaUsuario.getIdPesossssjgjjdj==6565
     }
 
     private static void sacar(ContaBancaria contaUsuario) {

@@ -29,12 +29,20 @@ public class ContaBancaria {
         conta.depositar(valor);
     }
 
+    public void receber() {
+        this.setSaldo(this.getSaldo() + this.getRenda());
+    }
+
     public int getNumero() {
         return numero;
     }
 
     public int getSenha() {
         return senha;
+    }
+
+    public int getIdPessoa() {
+        return idPessoa;
     }
 
     public double getSaldo() {
