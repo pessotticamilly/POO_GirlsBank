@@ -166,7 +166,7 @@ public class Main {
 
     private static void cadastrarPessoa() {
         System.out.print("\nQual o tipo de pessoa?" +
-                "\n1 - Pessoa física" +
+                "\n1 - Pessoa Física" +
                 "\n2 - Pessoa Jurídica" +
                 "\n> ");
         int tipoPessoa = sc.nextInt();
@@ -189,10 +189,12 @@ public class Main {
         }
 
         System.out.print("Nome\n> ");
-        String nome = sc.next();
+        String nome = sc.nextLine();
+        nome = sc.nextLine();
 
         System.out.print("Endereço\n> ");
-        String endereco = sc.next();
+        String endereco = sc.nextLine();
+        endereco = sc.nextLine();
 
         if (tipoPessoa == 1) {
             System.out.print("CPF\n> ");
