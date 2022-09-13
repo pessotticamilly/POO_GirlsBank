@@ -190,7 +190,7 @@ public class Main {
 
         System.out.print("Nome\n> ");
         String nome = sc.nextLine();
-        nome = sc.nextLine();
+        nome = sc.next();
 
         System.out.print("Endereço\n> ");
         String endereco = sc.nextLine();
