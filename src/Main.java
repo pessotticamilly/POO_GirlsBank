@@ -331,12 +331,12 @@ public class Main {
         for (ContaBancaria conta : contas) {
             if (conta.getNumero() == numero) {
                 contaTransferencia = conta;
-                validaConta= true;
+                validaConta = true;
                 break;
             }
         }
 
-        if(validaConta){
+        if (validaConta) {
             System.out.print("\nQual o valor que gostarias de transferir?\n> R$ ");
             double valor = sc.nextDouble();
 
