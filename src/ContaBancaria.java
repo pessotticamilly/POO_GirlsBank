@@ -30,7 +30,10 @@ public class ContaBancaria {
     }
 
     public void receber(PessoaFisica pessoa) {
-        this.setSaldo(this.getSaldo() + pessoa.getRenda());
+        if(pessoa.cont == 0) {
+            this.setSaldo(this.getSaldo() + pessoa.getRenda());
+            pessoa.cont++;
+        }
     }
 
     public int getNumero() {

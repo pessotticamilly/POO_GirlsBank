@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         pessoas.add(new PessoaFisica(1, "Camilly", "Rua João Bosco, 123", "123.456.789-10", "Estudante", 1212));
-        pessoas.add(new PessoaFisica(2, "Taiany", "Rua Bosco João, 321", "109.876.543-21", "Estudante", 0));
+        pessoas.add(new PessoaFisica(2, "Taiany", "Rua Bosco João, 321", "109.876.543-21", "Estudante", 1212));
         contas.add(new ContaBancaria(1, 1, 1234, 1, 100.0));
         contas.add(new ContaBancaria(1, 2, 4321, 2, 200.0));
         menuInicial();
@@ -241,7 +241,7 @@ public class Main {
     }
 
     private static void menuConta(ContaBancaria contaUsuario) {
-        receber(contaUsuario);
+            receber(contaUsuario);
 
         System.out.print("\n---- MENU CONTA ----" +
                 "\n1 - Sacar" +
@@ -288,7 +288,7 @@ public class Main {
     private static void receber(ContaBancaria contaUsuario) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd");
         Date date = new Date();
-        if (formatter.format(date).equals("5")) {
+        if (formatter.format(date).equals("13")) {
             int idPessoa = contaUsuario.getIdPessoa();
             PessoaFisica usuario = null;
             boolean validaPessoa = false;
