@@ -290,7 +290,7 @@ public class Main {
     private static void receber(ContaBancaria contaUsuario) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd");
         Date date = new Date();
-        if (formatter.format(date).equals("13")) {
+        if (formatter.format(date).equals("5")) {
             int idPessoa = contaUsuario.getIdPessoa();
             PessoaFisica usuario = null;
             boolean validaPessoa = false;
