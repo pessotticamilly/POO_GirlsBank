@@ -12,6 +12,14 @@ public class Pessoa {
         return id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
     @Override
     public String toString() {
         return "\nID: " + id +

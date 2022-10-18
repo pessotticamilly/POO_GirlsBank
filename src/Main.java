@@ -171,16 +171,6 @@ public class Main {
     }
 
     private static Pessoa coletarDadosPessoa() {
-
-    }
-
-    private static void cadastrarPessoa() {
-        System.out.print("\nQual o tipo de pessoa?" +
-                "\n1 - Pessoa Física" +
-                "\n2 - Pessoa Jurídica" +
-                "\n> ");
-        int tipoPessoa = sc.nextInt();
-
         System.out.print("\nID\n> ");
         int id = sc.nextInt();
 
@@ -195,7 +185,7 @@ public class Main {
 
         if (validaPessoa) {
             System.out.print("\nID inválido! Tente novamente: ");
-            cadastrarPessoa();
+            coletarDadosPessoa();
         }
 
         System.out.print("Nome\n> ");
@@ -205,6 +195,18 @@ public class Main {
         System.out.print("Endereço\n> ");
         String endereco = sc.nextLine();
         endereco = sc.nextLine();
+
+        return new Pessoa(id, nome, endereco);
+    }
+
+    private static void cadastrarPessoa() {
+        Pessoa pessoa = coletarDadosPessoa();
+
+        System.out.print("\nQual o tipo de pessoa?" +
+                "\n1 - Pessoa Física" +
+                "\n2 - Pessoa Jurídica" +
+                "\n> ");
+        int tipoPessoa = sc.nextInt();
 
         if (tipoPessoa == 1) {
             System.out.print("CPF\n> ");
@@ -216,12 +218,12 @@ public class Main {
             System.out.print("Renda\n> ");
             double renda = sc.nextDouble();
 
-            pessoas.add(new PessoaFisica(id, nome, endereco, cpf, profissao, renda));
+            pessoas.add(new PessoaFisica(pessoa.getId(), pessoa.getNome(), pessoa.getEndereco(), cpf, profissao, renda));
         } else {
             System.out.print("CNPJ\n> ");
             String cnpj = sc.next();
 
-            pessoas.add(new PessoaJuridica(id, nome, endereco, cnpj));
+            pessoas.add(new PessoaJuridica(pessoa.getId(), pessoa.getNome(), pessoa.getEndereco(), cnpj));
         }
         System.out.print("\nPessoa cadastrada com sucesso!\n\n");
         menuInicial();
