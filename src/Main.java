@@ -97,7 +97,7 @@ public class Main {
         }
     }
 
-    private static void cadastrarConta() {
+    private static ContaBancaria coletarDadosConta() {
         System.out.print("\nAgência\n> ");
         int agencia = sc.nextInt();
 
@@ -127,14 +127,20 @@ public class Main {
         }
 
         if (!verificaPessoa) {
-            System.out.print("\nID do proprietário! Tente novamente:");
+            System.out.print("\nID do proprietário inválido! Tente novamente:");
             cadastrarConta();
         }
 
         System.out.print("Saldo\n> ");
         double saldo = sc.nextDouble();
 
-        contas.add(new ContaBancaria(agencia, numero, senha, idPessoa, saldo));
+        return new ContaBancaria(agencia, numero, senha, idPessoa, saldo);
+    }
+
+    private static void cadastrarConta() {
+        ContaBancaria contaBancaria = coletarDadosConta();
+
+        contas.add(contaBancaria);
         System.out.print("\nConta cadastrada com sucesso!\n\n");
         menuInicial();
     }
@@ -162,6 +168,10 @@ public class Main {
             System.out.print("\nNúmero inválido! Tente novamente:");
             excluirConta();
         }
+    }
+
+    private static Pessoa coletarDadosPessoa() {
+
     }
 
     private static void cadastrarPessoa() {
